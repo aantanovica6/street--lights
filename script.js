@@ -1,14 +1,37 @@
-function changeColor(){
-    let redCircle = document.getElementById("red");
-    if(redCircle.style.backgroundColor == "red"){
-        redCircle.style.backgroundColor = "black";
-    }else{
-        redCircle.style.backgroundColor = "black";
-    }    
-}
-function clearLights() {
-  document.getElementById('stopLight').style.backgroundColor = "black";
-  document.getElementById('switchLight').style.backgroundColor = "black";
-  document.getElementById('goLight').style.backgroundColor   = "black";
+var lightStates = {red:0,amber:1,green:2};
+var currentState = lightStates.red;
+
+document.getElementById('changeBtn').onclick=function(){
+    changeState();
+};
+
+
+function changeState()
+{
+    clear();
+  switch(currentState)
+  {
+    case lightStates.red:
+    {
+      document.getElementById("red").className ="light red";
+      currentState =  lightStates.amber;
+    }
+      break;
+    case lightStates.amber:
+    {
+      document.getElementById("amber").className ="light amber";
+      currentState = lightStates.green;
+    } break;
+     case lightStates.green:
+    {
+      document.getElementById("green").className ="light green";
+      currentState = lightStates.red;
+    } break;
+   }
 }
 
+function clear(){
+   document.getElementById("red").className ="light off";
+   document.getElementById("amber").className ="light off";
+   document.getElementById("green").className ="light off";
+}
